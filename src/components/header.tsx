@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { CodeXml, Menu } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,7 +53,7 @@ const Header = () => {
             className="text-lg font-medium transition-colors hover:text-accent font-body text-center"
           >
              <p className="text-accent text-sm mb-1">0{index + 1}.</p>
-             {link.label}
+             {label}
           </Link>
         </SheetClose>
       ))}
@@ -75,8 +76,10 @@ const Header = () => {
            <Button asChild variant="outline" className="border-accent text-accent hover:bg-accent/10">
             <Link href="#contact">Contact Me</Link>
           </Button>
+          <ThemeToggle />
         </nav>
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
