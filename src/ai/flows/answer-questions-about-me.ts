@@ -36,7 +36,12 @@ const prompt = ai.definePrompt({
   - Work Experience: Web Developer Intern at Prodigy Infotech
   - Education: ABES Engineering College
   - Projects: FlashKart, MediChat, MovieHub
-  - Skills: Data Structures & Algorithms, JavaScript (ES6+), TypeScript, React, Next.js, Node.js, Express.js, HTML, CSS, Tailwind CSS, Bootstrap, Firebase, MongoDB, MySQL, Genkit, Git & GitHub, Machine Learning, OOPS Concepts, Authentication (OAuth, JWT), Deployment (Vercel, Netlify, AWS)
+  - Skills:
+    - Frontend Development: React, Next.js, JavaScript (ES6+), TypeScript, HTML, CSS, Tailwind CSS, Bootstrap
+    - Backend Development: Node.js, Express.js, Firebase, MongoDB, MySQL
+    - Programming & Concepts: Data Structures & Algorithms, OOPS Concepts, Git & GitHub, REST APIs
+    - AI/ML: Genkit, Machine Learning
+    - Tools & Deployment: Vercel, Netlify, AWS, Authentication (OAuth, JWT)
 
   Question: {{{question}}}
   Answer: `,
