@@ -33,7 +33,7 @@ const Header = () => {
 
   const NavLinkContent = () => (
     <>
-      {navLinks.slice(0, 4).map((link) => (
+      {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
@@ -57,6 +57,16 @@ const Header = () => {
           </Link>
         </SheetClose>
       ))}
+       <SheetClose asChild>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lg font-medium transition-colors hover:text-accent font-body text-center"
+          >
+            Resume
+          </a>
+       </SheetClose>
     </>
   );
 
@@ -84,7 +94,7 @@ const Header = () => {
           <div className="flex items-center gap-2 pr-4">
             <ThemeToggle />
              <Button asChild variant="outline" size="sm" className="rounded-full">
-                <Link href="#contact">Contact</Link>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
             </Button>
           </div>
         </div>
