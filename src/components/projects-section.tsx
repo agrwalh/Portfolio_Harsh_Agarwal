@@ -3,33 +3,33 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 
 const projects = [
   {
     title: "FlashKart",
-    description: "An innovative e-commerce platform with a flash sale feature, designed to provide a fast and engaging shopping experience.",
+    description: "An innovative e-commerce platform with a flash sale feature, designed to provide a fast and engaging shopping experience. Built with a focus on performance and scalability to handle high-traffic sale events.",
     image: "https://placehold.co/600x400.png",
     imageHint: "ecommerce website",
-    techStack: ["React", "Firebase", "Tailwind CSS"],
+    techStack: ["React", "Firebase", "Tailwind CSS", "Node.js"],
     liveLink: "#",
     repoLink: "#",
   },
   {
     title: "MediChat",
-    description: "A secure and real-time chat application for medical professionals to consult and collaborate effectively.",
+    description: "A secure and real-time chat application for medical professionals to consult and collaborate effectively. Features end-to-end encryption to ensure patient data privacy and compliance with health regulations.",
     image: "https://placehold.co/600x400.png",
     imageHint: "chat application",
-    techStack: ["React", "Node.js", "Socket.io"],
+    techStack: ["React", "Node.js", "Socket.io", "MongoDB"],
     liveLink: "#",
     repoLink: "#",
   },
   {
     title: "MovieHub",
-    description: "A feature-rich web application for discovering movies and TV shows, with personalized recommendations and watchlists.",
+    description: "A feature-rich web application for discovering movies and TV shows, with personalized recommendations and watchlists. Integrates with TheMovieDB API to provide up-to-date information.",
     image: "https://placehold.co/600x400.png",
     imageHint: "movie database",
-    techStack: ["React", "Typescript", "TheMovieDB API"],
+    techStack: ["React", "Typescript", "TheMovieDB API", "Next.js"],
     liveLink: "#",
     repoLink: "#",
   },
@@ -37,17 +37,16 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="w-full py-24 md:py-32 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="projects" className="w-full py-24 md:py-32">
         <div className="space-y-4 text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">My Projects</h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed font-body">
-            Here are some of the projects I've worked on, showcasing my skills in web development.
-          </p>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline text-primary">Some Things I've Built</h2>
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed font-body">
+                A selection of projects that demonstrate my passion for web development.
+            </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <Card key={project.title} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+            <Card key={project.title} className="flex flex-col bg-card border-border/60 overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10">
               <div className="relative h-48 w-full">
                   <Image
                   src={project.image}
@@ -58,23 +57,22 @@ const ProjectsSection = () => {
                   />
               </div>
               <CardHeader>
-                <CardTitle className="font-headline">{project.title}</CardTitle>
-                <CardDescription className="font-body pt-2">{project.description}</CardDescription>
+                <CardTitle className="font-headline text-primary-foreground">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col justify-between">
                 <div>
-                  <h4 className="font-semibold mb-2 font-body">Technologies Used:</h4>
+                  <p className="font-body text-muted-foreground mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
-                      <Badge key={tech} variant="secondary">{tech}</Badge>
+                      <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary font-mono">{tech}</Badge>
                     ))}
                   </div>
                 </div>
                 <div className="flex gap-4 mt-6">
-                  <Button asChild variant="outline">
-                    <Link href={project.repoLink} target="_blank">GitHub</Link>
+                  <Button asChild variant="ghost" className="text-muted-foreground hover:text-accent">
+                    <Link href={project.repoLink} target="_blank"><Github className="mr-2 h-4 w-4" /> GitHub</Link>
                   </Button>
-                  <Button asChild>
+                  <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
                     <Link href={project.liveLink} target="_blank">Live Demo <ArrowUpRight className="ml-2 h-4 w-4" /></Link>
                   </Button>
                 </div>
@@ -82,7 +80,6 @@ const ProjectsSection = () => {
             </Card>
           ))}
         </div>
-      </div>
     </section>
   );
 };
