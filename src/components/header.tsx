@@ -59,7 +59,7 @@ const Header = () => {
       ))}
        <SheetClose asChild>
           <a
-            href="/resume.pdf"
+            href="https://drive.google.com/file/d/1Fo0tdLzom9lmPtpaxnK5O14hZQCxtkNE/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg font-medium transition-colors hover:text-accent font-body text-center"
@@ -94,7 +94,7 @@ const Header = () => {
           <div className="flex items-center gap-2 pr-4">
             <ThemeToggle />
              <Button asChild variant="outline" size="sm" className="rounded-full">
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a href="https://drive.google.com/file/d/1Fo0tdLzom9lmPtpaxnK5O14hZQCxtkNE/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
             </Button>
           </div>
         </div>
