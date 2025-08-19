@@ -22,13 +22,12 @@ const AiAssistant = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollViewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-      const scrollArea = (scrollAreaRef.current?.childNodes[0] as HTMLDivElement)?.childNodes[0] as HTMLDivElement;
-      if (scrollArea) {
-        scrollArea.scrollTo({
-          top: scrollArea.scrollHeight,
+    if (scrollViewportRef.current) {
+        scrollViewportRef.current.scrollTo({
+          top: scrollViewportRef.current.scrollHeight,
           behavior: 'smooth',
         });
       }
@@ -74,7 +73,7 @@ const AiAssistant = () => {
           </SheetTitle>
         </SheetHeader>
         <div className="flex-1 flex flex-col h-full overflow-hidden">
-            <ScrollArea className="flex-grow p-4 pr-6 -mx-4" ref={scrollAreaRef}>
+            <ScrollArea className="flex-grow p-4 pr-6 -mx-4" viewportRef={scrollViewportRef}>
             <div className="space-y-6">
                 {messages.map((message) => (
                 <div
