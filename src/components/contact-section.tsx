@@ -15,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/ai/flows/send-contact-email";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,6 +32,7 @@ const formSchema = z.object({
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,13 +42,28 @@ const ContactSection = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values); // In a real app, you'd send this to a backend
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const result = await sendContactEmail(values);
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to send email.");
+      }
+    } catch (error) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -99,7 +117,9 @@ const ContactSection = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" size="lg">Send Message</Button>
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
             </form>
           </Form>
         </div>

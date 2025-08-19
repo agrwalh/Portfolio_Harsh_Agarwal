@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/summarize-experience.ts';
 import '@/ai/flows/answer-questions-about-me.ts';
+import '@/ai/flows/send-contact-email.ts';
