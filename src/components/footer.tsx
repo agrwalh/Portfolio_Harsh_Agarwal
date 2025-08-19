@@ -11,10 +11,10 @@ const Footer = () => {
             </p>
         </div>
         <div className="flex gap-4">
-            <Link href="https://github.com/harshtalks" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <Link href="https://github.com/agrwalh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
             </Link>
-            <Link href="https://www.linkedin.com/in/harsh-agarwal-0268a7252/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Link href="https://www.linkedin.com/in/harsh-agarwal-2300642a7/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <Linkedin className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
             </Link>
         </div>
