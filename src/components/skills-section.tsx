@@ -1,16 +1,26 @@
 import { CheckCircle } from "lucide-react";
 
 const skills = [
+    "Data Structures & Algorithms",
     "JavaScript (ES6+)",
     "TypeScript",
     "React",
     "Next.js",
     "Node.js",
+    "Express.js",
+    "HTML",
+    "CSS",
     "Tailwind CSS",
+    "Bootstrap",
     "Firebase",
     "MongoDB",
+    "MySQL",
     "Genkit",
-    "Git & GitHub"
+    "Git & GitHub",
+    "Machine Learning",
+    "OOPS Concepts",
+    "Authentication (OAuth, JWT)",
+    "Deployment (Vercel, Netlify, AWS)"
 ];
 
 const SkillsSection = () => {
