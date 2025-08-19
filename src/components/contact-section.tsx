@@ -53,12 +53,12 @@ const ContactSection = () => {
         });
         form.reset();
       } else {
-        throw new Error("Failed to send email.");
+        throw new Error(result.error || "Failed to send email.");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem sending your message. Please try again.",
+        description: error.message || "There was a problem sending your message. Please try again.",
         variant: "destructive",
       });
     } finally {

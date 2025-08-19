@@ -9,7 +9,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 import nodemailer from 'nodemailer';
 
 const SendContactEmailInputSchema = z.object({
@@ -71,9 +71,9 @@ const sendContactEmailFlow = ai.defineFlow(
         await transporter.sendMail(mailOptions);
         console.log('Email sent successfully');
         return { success: true };
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error sending email:', error);
-        return { success: false, error: 'Failed to send email.' };
+        return { success: false, error: error.message || 'Failed to send email.' };
     }
   }
 );
