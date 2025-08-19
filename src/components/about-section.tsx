@@ -26,7 +26,7 @@ const AboutSection = () => {
                 <div className="md:col-span-2 relative group flex justify-center">
                     <div className="absolute inset-0 bg-accent rounded-lg transform -rotate-3 transition-transform group-hover:rotate-0 group-hover:scale-105 duration-300"></div>
                      <Image
-                        src="https://placehold.co/500x500.png"
+                        src="/profile.png"
                         alt="Harsh Agarwal"
                         width={400}
                         height={400}
