@@ -40,7 +40,7 @@ const ExperienceSection = () => {
                         {experiences.map((exp) => (
                              <TabsContent key={exp.value} value={exp.value} className="mt-0">
                                 <div className="p-6 rounded-lg bg-card border-border/60">
-                                    <h3 className="text-2xl font-bold font-headline text-primary-foreground">{exp.role} @ <span className="text-accent">{exp.company}</span></h3>
+                                    <h3 className="text-2xl font-bold font-headline text-card-foreground">{exp.role} @ <span className="text-accent">{exp.company}</span></h3>
                                     <p className="text-sm text-muted-foreground mt-1 mb-6">{exp.period}</p>
                                     <ul className="space-y-4">
                                         {exp.description.map((desc, i) => (

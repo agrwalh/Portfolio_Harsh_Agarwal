@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { MessageCircle, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, Send, Bot, User, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { answerQuestionsAboutMe } from '@/ai/flows/answer-questions-about-me';
 
@@ -15,6 +15,13 @@ interface Message {
   text: string;
   sender: 'user' | 'ai';
 }
+
+const suggestionPresets = [
+  'What are you working on these days?',
+  'Tell me about your AI projects',
+  'What tech stack do you enjoy using?',
+  "What's your background and experience?",
+];
 
 const AiAssistant = () => {
   const [messages, setMessages] = useState<Message[]>([
@@ -33,25 +40,28 @@ const AiAssistant = () => {
       }
   }, [messages]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
-
-    const userMessage: Message = { id: Date.now(), text: input, sender: 'user' };
+  const sendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
+    const userMessage: Message = { id: Date.now(), text, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
-    setInput('');
     setIsLoading(true);
-
     try {
-      const response = await answerQuestionsAboutMe({ question: input });
+      const response = await answerQuestionsAboutMe({ question: text });
       const aiMessage: Message = { id: Date.now() + 1, text: response.answer, sender: 'ai' };
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
-      const errorMessage: Message = { id: Date.now() + 1, text: "Sorry, I encountered an error. Please try again.", sender: 'ai' };
+      const errorMessage: Message = { id: Date.now() + 1, text: 'Sorry, I encountered an error. Please try again.', sender: 'ai' };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    void sendMessage(input);
+    setInput('');
   };
 
   return (
@@ -75,6 +85,37 @@ const AiAssistant = () => {
         <div className="flex-1 flex flex-col h-full overflow-hidden">
             <ScrollArea className="flex-grow p-4 pr-6 -mx-4" viewportRef={scrollViewportRef}>
             <div className="space-y-6">
+                {messages.length <= 1 && (
+                  <div className="flex flex-col items-center text-center gap-3 py-6">
+                    <Avatar className="h-14 w-14 bg-primary text-primary-foreground">
+                      <AvatarFallback><Bot /></AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h3 className="text-xl font-headline">Hey, I'm Harsh's AI!</h3>
+                      <p className="text-sm text-muted-foreground">Ask me anything about my projects, skills, or experience.</p>
+                    </div>
+                    <div className="w-full">
+                      <div className="flex items-start gap-2 rounded-md border p-3 text-sm bg-muted/50">
+                        <Info className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                        <p className="text-muted-foreground">This assistant uses on-site knowledge. It won't browse the web.</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-2 pt-1">
+                      {suggestionPresets.map((s) => (
+                        <Button
+                          key={s}
+                          variant="secondary"
+                          size="sm"
+                          className="rounded-full"
+                          onClick={() => sendMessage(s)}
+                          disabled={isLoading}
+                        >
+                          {s}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {messages.map((message) => (
                 <div
                     key={message.id}

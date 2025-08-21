@@ -47,9 +47,25 @@ const ContactSection = () => {
     try {
       const result = await sendContactEmail(values);
       if (result.success) {
+        const hasPreview = Boolean(result.previewUrl);
+        const sentTo = result.sentTo?.join(", ");
         toast({
-          title: "Message Sent!",
-          description: "Thanks for reaching out. I'll get back to you soon.",
+          title: hasPreview ? "Message Sent (Preview)" : "Message Sent!",
+          description: hasPreview ? (
+            <div className="space-y-2">
+              <p>Thanks for reaching out. This is a development preview email.</p>
+              <p>
+                <a
+                  href={result.previewUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline"
+                >
+                  Open email preview
+                </a>
+              </p>
+            </div>
+          ) : sentTo ? `Delivered to: ${sentTo}` : "Thanks for reaching out. I'll get back to you soon.",
         });
         form.reset();
       } else {

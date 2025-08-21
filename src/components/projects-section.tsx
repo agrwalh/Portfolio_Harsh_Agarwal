@@ -57,7 +57,7 @@ const ProjectsSection = () => {
                   />
               </div>
               <CardHeader>
-                <CardTitle className="font-headline text-primary-foreground">{project.title}</CardTitle>
+                <CardTitle className="font-headline text-card-foreground">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col justify-between">
                 <div>
